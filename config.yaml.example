@@ -1,0 +1,73 @@
+# DMARC Report Viewer Configuration Example
+# Copy this file to config.yaml and update with your settings
+
+# IMAP server configuration
+imap:
+  # IMAP server hostname
+  host: imap.example.com
+
+  # IMAP server port (default: 993 for TLS)
+  port: 993
+
+  # IMAP username (usually your email address)
+  username: user@example.com
+
+  # IMAP password or app-specific password
+  password: your-password-here
+
+  # IMAP folder containing DMARC reports (default: INBOX)
+  folder: INBOX.DMARC
+
+  # Use TLS for connection (default: true)
+  use_tls: true
+
+# Database configuration
+database:
+  # Path to SQLite database file (default: ./dmarc-reports.db)
+  path: ./dmarc-reports.db
+
+# Web server configuration
+web:
+  # Host to bind to (default: localhost)
+  # Use 0.0.0.0 to listen on all interfaces
+  host: localhost
+
+  # Port to listen on (default: 8080)
+  port: 8080
+
+# Synchronization configuration
+sync:
+  # Interval between automatic syncs (default: 15m)
+  # Valid units: s (seconds), m (minutes), h (hours)
+  # Examples: 30s, 5m, 1h
+  interval: 15m
+
+  # Run sync on application startup (default: true)
+  on_startup: true
+
+# Logging configuration
+logging:
+  # Log level: debug, info, warn, error (default: info)
+  level: info
+
+  # Log format: text, json (default: text)
+  # Use json for structured logging in production
+  format: text
+
+# Configuration Priority
+# =====================
+# 1. Command line flags (highest priority)
+# 2. Environment variables (prefix: DMARC_)
+# 3. This YAML file (lowest priority)
+#
+# Example environment variables:
+#   DMARC_IMAP_HOST=imap.example.com
+#   DMARC_IMAP_PORT=993
+#   DMARC_IMAP_USERNAME=user@example.com
+#   DMARC_IMAP_PASSWORD=secret
+#   DMARC_DATABASE_PATH=./db/reports.db
+#   DMARC_WEB_PORT=9090
+#   DMARC_LOG_LEVEL=debug
+#
+# Example command line flags:
+#   ./dmarc-viewer --imap-host imap.example.com --web-port 9090
